@@ -16,3 +16,6 @@ Use Smart Document Understanding to build an enhanced Watson Discovery collectio
 Create an IBM Cloud Functions web action that allows Watson Assistant to post queries to Watson Discovery
 
 Build a web application with integration to all these services & deploy the same on IBM Cloud Platform
+
+# Link to website
+https://node-red-ehhmq.mybluemix.net/
