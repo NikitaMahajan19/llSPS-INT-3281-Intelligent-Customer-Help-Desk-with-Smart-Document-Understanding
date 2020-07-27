@@ -1,0 +1,222 @@
+[
+    {
+        "id": "d7facee0.87fac",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "7fa86c42.df1364",
+        "type": "ui_form",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "label": "",
+        "group": "55670cab.374c64",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "options": [
+            {
+                "label": "Please enter the news you want to see",
+                "value": "input",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "input": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "dbb2dee4.3aea9"
+            ]
+        ],
+        "info": "fdsafrghrth"
+    },
+    {
+        "id": "dbb2dee4.3aea9",
+        "type": "function",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "func": "msg = {\n    discoveryparams:\n    {\n        \"environment_id\":\"system\",\n        \"query\":msg.payload.input\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 300,
+        "wires": [
+            [
+                "11d66d2d.e5c653"
+            ]
+        ]
+    },
+    {
+        "id": "11d66d2d.e5c653",
+        "type": "watson-discovery-v1",
+        "z": "d7facee0.87fac",
+        "name": "watson-news",
+        "environmentname": "",
+        "environmentId": "system",
+        "collectionId": "news-en",
+        "configurationname": "",
+        "configurationId": "",
+        "language_code": "en",
+        "collection_name": "",
+        "count": "1",
+        "passages": true,
+        "nlp_query": true,
+        "query": "",
+        "filter": "",
+        "aggregation": "",
+        "return": "",
+        "description": "",
+        "size": "LT",
+        "discovery-method": "query",
+        "service-endpoint": "https://api.eu-gb.discovery.watson.cloud.ibm.com/instances/b056e3d5-c2fa-4085-bd9a-3f68f4c0535c",
+        "x": 480,
+        "y": 300,
+        "wires": [
+            [
+                "5a6a55b3.d3999c",
+                "806e7aab.86b8b8"
+            ]
+        ]
+    },
+    {
+        "id": "5a6a55b3.d3999c",
+        "type": "function",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "func": "msg.payload = msg.search_results.results[0].text\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 400,
+        "wires": [
+            [
+                "733ce4df.e878dc",
+                "e4372da9.8eb49"
+            ]
+        ]
+    },
+    {
+        "id": "806e7aab.86b8b8",
+        "type": "debug",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 670,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "733ce4df.e878dc",
+        "type": "debug",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 890,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "e4372da9.8eb49",
+        "type": "ui_text",
+        "z": "d7facee0.87fac",
+        "group": "55670cab.374c64",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "name": "",
+        "label": "news article",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 880,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "4a46d868.8364d8",
+        "type": "template",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "plain",
+        "template": "<html>\n    <head>\n        <script defer src=\"https://use.fontawesome.com/releases/v5.3.1/js/all.js\"></script>\n         <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n        <title>\n        THE NEWS APP.\n        </title>\n    </head>\n    <body>\n        \n        \n<section class=\"hero is-primary\">\n  <div class=\"hero-body\">\n    <div class=\"container\">\n      <h1 class=\"title\" style = \"text-align:center\">\n        THE NEWS APP.\n      </h1>\n      <h2 class=\"subtitle\" style = \"text-align:center\">\n        Experience Artificial Intelligence.\n      </h2>\n    </div>\n  </div>\n</section>\n\n<div>\n    <p class = \"subitle has-text-black\" style = \"text-align: center; padding :20px\">\n        Feel free to play with Watson assistant on bottom right corner.\n\n    </p>\n</div>\n<div class = \"column\" style = \"padding:50px\">\n<div class=\"card\" >\n    <header class=\"card-header\">\n      <p class=\"card-header-title\">\n        Access the news app here.\n      </p>\n    </header>\n    <div class=\"card-content\">\n      <div class=\"content\">\n        This is a AI-based news app that will search the dataset for the keywords and return to you the best news.\n       \n      </div>\n    </div>\n    <footer class=\"card-footer\">\n      <a href=\"https://node-red-sddzf.eu-gb.mybluemix.net/ui\" class=\"card-footer-item\">Take me to app</a>\n    </footer>\n  </div>\n</div>\n\n\n<div>\n    <p class = \"title has-text-black\" style = \"padding: 50px;\">\n        What was used to build this?\n    </p>\n</div>\n\n<div class=\"dropdown is-hoverable\" style = \"padding-left:70px\" >\n    <div class=\"dropdown-trigger\">\n      <button class=\"button\" aria-haspopup=\"true\" aria-controls=\"dropdown-menu4\">\n        <span>Tech Stack:</span>\n        <span class=\"icon is-small\">\n          <i class=\"fas fa-angle-down\" aria-hidden=\"true\"></i>\n        </span>\n      </button>\n    </div>\n    <div class=\"dropdown-menu\" style = \"padding-left:70px\" id=\"dropdown-menu4\" role=\"menu\">\n      <div class=\"dropdown-content\">\n        <div class=\"dropdown-item\">\n           HTML\n        </div>\n        <div class=\"dropdown-item\">\n            Bulma\n         </div>\n         <div class=\"dropdown-item\">\n            IBM Assistant & Discovery\n         </div>\n         <div class=\"dropdown-item\">\n            NODE RED\n         </div>\n         <div class=\"dropdown-item\">\n            JavaScript\n         </div>\n         <div class=\"dropdown-item\">\n            IBM Cloud\n         </div>\n      </div>\n    </div>\n  </div>\n  \n\n  \n         \n         <script>\n  window.watsonAssistantChatOptions = {\n      integrationID: \"9738e8c5-4928-4318-a885-9ce041dc74e9\", // The ID of this integration.\n      region: \"eu-gb\", // The region your integration is hosted in.\n      serviceInstanceID: \"82c84c89-c342-476d-9d8e-7614dadfa5dd\", // The ID of your service instance.\n      onLoad: function(instance) { instance.render(); }\n    };\n  setTimeout(function(){\n    const t=document.createElement('script');\n    t.src=\"https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js\";\n    document.head.appendChild(t);\n  });\n</script>\n\n\n\n<footer class=\"footer\">\n    <div class=\"content has-text-centered\">\n      <p class = \"has-text-black\">\n       Made by <a href = \"https://ag371.github.io\" class = \"has-text-blue\">AG</a> with <i class=\"fas fa-heart has-text-danger\"></i>\n       <br> Built using IBM Watson.\n       <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Buy me a Coffee', '#44e3ab', 'W7W11PE0B');kofiwidget2.draw();</script> \n      </p>\n    </div>\n  </footer>\n\n    </body>\n</html>",
+        "output": "str",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "7fa86c42.df1364",
+                "393b2878.981ca8"
+            ]
+        ]
+    },
+    {
+        "id": "e9257620.9714f8",
+        "type": "http in",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "url": "/",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 70,
+        "y": 500,
+        "wires": [
+            [
+                "4a46d868.8364d8"
+            ]
+        ]
+    },
+    {
+        "id": "393b2878.981ca8",
+        "type": "http response",
+        "z": "d7facee0.87fac",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 450,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "55670cab.374c64",
+        "type": "ui_group",
+        "z": "",
+        "name": "Search",
+        "tab": "6cf0087d.361968",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6cf0087d.361968",
+        "type": "ui_tab",
+        "z": "",
+        "name": "The News App",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
