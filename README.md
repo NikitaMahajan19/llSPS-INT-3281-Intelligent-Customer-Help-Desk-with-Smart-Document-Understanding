@@ -19,3 +19,6 @@ Build a web application with integration to all these services & deploy the same
 
 # Link to website
 https://node-red-ehhmq.mybluemix.net/
+
+# Link to demo video
+https://drive.google.com/file/d/1l7SAEioCSEibJZJyQJpD_WXBACBUKKhu/view?usp=sharing
