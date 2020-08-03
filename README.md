@@ -22,3 +22,6 @@ https://node-red-ehhmq.mybluemix.net/
 
 # Link to demo video
 https://drive.google.com/file/d/1l7SAEioCSEibJZJyQJpD_WXBACBUKKhu/view?usp=sharing
+
+# Link of Testimonial Video
+https://drive.google.com/file/d/11nPzTQJB_bRqIUK8kMJ57Jw8ORobwAO8/view?usp=sharing
